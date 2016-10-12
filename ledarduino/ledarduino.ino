@@ -10,7 +10,7 @@ const int button2 = 3; //the same
 const int led = 13; //defining the led position to the 13th pin
 //starting setup routine
 void setup() {
-  // initialize serial communication at 9600 bits per second:
+  
   pinMode(button1, INPUT);
   pinMode(button2,INPUT);
   pinMode(led,OUTPUT);
