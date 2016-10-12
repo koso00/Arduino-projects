@@ -39,6 +39,9 @@ void loop()
   }
   digitalWrite(led,led_state); //this write the led_state on the led
 
+old_val1 = digitalRead(button1)
+old_val2 = digitalRead(button2)
+
   delay(30);        // delay for stability 
 }
 
