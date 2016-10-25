@@ -5,7 +5,7 @@ pinMode(13,OUTPUT);
 }
 void loop()
 {
-if (digitalRead(1) > 165)
+if (analogRead(1) > 165)
 {
 digitalWrite(13,HIGH);
 }
