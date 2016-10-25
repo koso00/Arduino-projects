@@ -1,0 +1,17 @@
+void setup()
+{
+pinMode(1,INPUT);
+pinMode(13,OUTPUT);
+}
+void loop()
+{
+if (digitalRead(1) > 165)
+{
+digitalWrite(13,HIGH);
+}
+else
+{
+digitalWrite(13,LOW);
+}
+delay(300);
+}
