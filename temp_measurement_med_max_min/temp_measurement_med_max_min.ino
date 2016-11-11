@@ -1,7 +1,7 @@
 
 int c = 0;
 float max_val = 0;
-float min_val = 0;
+float min_val = 300;
 float med_val = 0;
 float sum = 0;
 int nc = 12; //cambiare questo numero comporta un cambiamento nelle iterazioni
@@ -52,7 +52,7 @@ void loop()
   if ((digitalRead(button)==HIGH) && (loop_flag == LOW))
     {
         max_val = 0;
-        min_val = 0;
+        min_val = 300;
         med_val = 0;
         sum = 0;
         c = 0;
