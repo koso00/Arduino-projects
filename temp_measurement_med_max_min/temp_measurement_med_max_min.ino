@@ -30,6 +30,7 @@ void loop()
 {
  if(loop_flag==HIGH) 
   {
+Serial.println("Loading")
     digitalWrite(led,HIGH);
     for (c= 0; c < nc ; c++)
       {
@@ -43,16 +44,30 @@ void loop()
         //somma per la media
         sum += temp_buff;
         array[c] = temp_buff;
+Serial.println("...")
         delay(1000);
       }
       Serial.println("********************************");
-      Serial.println("la temperatura più alta è :");Serial.print(max_val);
-      Serial.println("la temperatura più bassa è :");Serial.print(min_val);
-      Serial.println("la temperatura media é :"); Serial.print((sum/nc));
+      Serial.print("la temperatura piu' alprint :");Serial.println(max_val);
+      Serial.print("la temperatura piu' bassa e' :");Serial.println(min_val);
+      Serial.print("la temperatura media e':"); Serial.println((sum/nc));
       Serial.println("********************************");
       Serial.println("");
 for(c=0;c<nc;c++)
       {
+switch(i)
+{
+case 0:
+Serial.print("Primo valore")
+break;
+case 4:
+Serial.print("Quarto valore")
+break;
+case 10:
+Serial.print("Ultimo valore")
+break;
+}
+
       Serial.print(array[c]);
       Serial.print(" ,");
       }
