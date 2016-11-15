@@ -6,6 +6,7 @@ float max_val = 0;
 float min_val = 300;
 float med_val = 0;
 float sum = 0;
+float tmp = 0;
 int nc = 12; //cambiare questo numero comporta un cambiamento nelle iterazioni
 float temp_buff = 0;
 float array[nc];
