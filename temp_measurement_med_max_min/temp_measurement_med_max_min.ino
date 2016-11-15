@@ -1,4 +1,6 @@
-
+const int B = 3000;
+const int Ro = 1000;
+const int Tnom = 25;
 int c = 0;
 float max_val = 0;
 float min_val = 300;
@@ -32,7 +34,7 @@ void loop()
       {
         //qualsiasi sia il suo nome, lo addressiamo in una variabile per evitare 
         //di ripetere troppo codice 
-        temp_buff = mis_temp(); 
+        temp_buff = misTemp(); 
         //assegnamento del valore massimo
         if (temp_buff > max_val) {max_val = temp_buff; }
         //assegnamento del valore minimo
@@ -68,4 +70,16 @@ digitalWrite(led,LOW);
         loop_flag = HIGH;
     }
   }
+
+float misTemp()
+{
+tmp = analogRead(A0);
+tmp = Ro/((1023/tmp)-1);
+tmp = tmp/Ro;
+tmp = log(tmp);
+tmp = tmp/B;
+tmp = tmp +1.0/(Tnom + 273.15);
+tmp = 1.0/tmp;
+tmp = tmp - 273.1;
+}
 
