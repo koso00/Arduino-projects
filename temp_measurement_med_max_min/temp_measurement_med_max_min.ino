@@ -6,6 +6,7 @@ float med_val = 0;
 float sum = 0;
 int nc = 12; //cambiare questo numero comporta un cambiamento nelle iterazioni
 float temp_buff = 0;
+float array[nc];
 /**********************************
   PARTE NON NELLA TRACCIA 
   **********************************/
@@ -38,6 +39,7 @@ void loop()
         if (temp_buff < min_val) {min_val = temp_buff;}
         //somma per la media
         sum += temp_buff;
+        array[c] = temp_buff;
         delay(1000);
       }
       Serial.println("********************************");
@@ -45,7 +47,13 @@ void loop()
       Serial.println("la temperatura più bassa è :");Serial.print(min_val);
       Serial.println("la temperatura media é :"); Serial.print((sum/nc));
       Serial.println("********************************");
-      digitalWrite(led,LOW);
+      Serial.println("");
+for(c=0;c<nc;c++)
+      {
+      Serial.print(array[c]);
+      Serial.print(" ,");
+      }
+digitalWrite(led,LOW);
       loop_flag = LOW;
   }
 
