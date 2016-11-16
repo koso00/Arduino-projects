@@ -1,6 +1,8 @@
 const int B = 3000;
 const int Ro = 1000;
 const int Tnom = 25;
+const int Tcomp = 20; //temperatura di comparazione
+int comp_c = 0;
 int c = 0;
 float max_val = 0;
 float min_val = 300;
@@ -9,7 +11,8 @@ float sum = 0;
 float tmp = 0;
 int nc = 12; //cambiare questo numero comporta un cambiamento nelle iterazioni
 float temp_buff = 0;
-float array[nc];
+float array[12];
+int first_boot = false;
 /**********************************
   PARTE NON NELLA TRACCIA 
   **********************************/
@@ -30,7 +33,18 @@ void loop()
 {
  if(loop_flag==HIGH) 
   {
-Serial.println("Loading")
+if (first_boot == false)
+    {
+    
+Serial.println("88  dP  dP'Yb  .dP'Y8  dP'Yb   dP'Yb   dP'Yb");
+Serial.println("88odP  dP   Yb `Ybo.  dP   Yb dP  /Yb dP  /Yb" );
+Serial.println("88'Yb  Yb   dP o.`Y8b Yb   dP Yb / dP Yb / dP ");
+Serial.println("88  Yb  YbodP  8bodP'  YbodP   YbodP   YbodP  ");
+
+    first_boot = true;
+    }
+Serial.println("**********************************");
+Serial.println("Loading");
     digitalWrite(led,HIGH);
     for (c= 0; c < nc ; c++)
       {
@@ -44,35 +58,25 @@ Serial.println("Loading")
         //somma per la media
         sum += temp_buff;
         array[c] = temp_buff;
-Serial.println("...")
+Serial.println("...");
         delay(1000);
       }
-      Serial.println("********************************");
-      Serial.print("la temperatura piu' alprint :");Serial.println(max_val);
+      Serial.print("la temperatura piu' alta e' :");Serial.println(max_val);
       Serial.print("la temperatura piu' bassa e' :");Serial.println(min_val);
       Serial.print("la temperatura media e':"); Serial.println((sum/nc));
-      Serial.println("********************************");
-      Serial.println("");
+      Serial.println("lista temperature rilevate (le temperature superiori alla nominale avranno due asterischi a sinistra)");
 for(c=0;c<nc;c++)
       {
-switch(i)
-{
-case 0:
-Serial.print("Primo valore")
-break;
-case 4:
-Serial.print("Quarto valore")
-break;
-case 10:
-Serial.print("Ultimo valore")
-break;
-}
-
+      if (array[c] > Tcomp) {comp_c ++; Serial.print(" ** ");}
       Serial.print(array[c]);
       Serial.print(" ,");
       }
+Serial.println("");
+Serial.print("la temperatura nominale è stata superata "); Serial.print(comp_c) ; Serial.println(" volte");
+Serial.println("**********************************");
 digitalWrite(led,LOW);
       loop_flag = LOW;
+
   }
 
   if ((digitalRead(button)==HIGH) && (loop_flag == LOW))
@@ -82,6 +86,7 @@ digitalWrite(led,LOW);
         med_val = 0;
         sum = 0;
         c = 0;
+        comp_c = 0;
         temp_buff = 0;
         loop_flag = HIGH;
     }
